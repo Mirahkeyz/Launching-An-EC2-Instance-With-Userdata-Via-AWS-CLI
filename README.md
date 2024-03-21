@@ -42,6 +42,91 @@ Now to retrieve the public IP to see if we can reach it via browser.
 
 # Tier 2: Advanced
 
+Now that we have an EC2 instance hosting our Apache web server, we need to create an AMI and spin up a new instance to test if we can reach it via browser just like we did in the previous tier.
+
+Head back into the EC2 console and right click on the server. Then go to Image and templates then create image.
+
+I am going to give it the same name as my original EC2 instance but will be adding Gold Image to it.
+
+![Snipe 7](https://github.com/Mirahkeyz/Launching-An-EC2-Instance-With-Userdata-Via-AWS-CLI/assets/134533695/e2f230c2-7909-4dd4-a76b-8598a0e7024b)
+
+Scroll down and click on Create image.
+
+Just wait until the status changes to Available before continuing.
+
+When it is Available, right click on the AMI and select Launch instance from AMI.
+
+![Snipe 8](https://github.com/Mirahkeyz/Launching-An-EC2-Instance-With-Userdata-Via-AWS-CLI/assets/134533695/e5e4a780-686c-472c-bdc5-ec113c659fc3)
+
+Give the new instance a name and make sure in the AMI from catalog section, that the proper AMI is selected. The next thing we need to do is select the same Key pair that we were using for the original instance, click on Select existing security group and choose the same one we created earlier. Then click on Launch instance.
+
+![Snipe 9](https://github.com/Mirahkeyz/Launching-An-EC2-Instance-With-Userdata-Via-AWS-CLI/assets/134533695/010b063e-1636-4b2e-ae93-d374823aab92)
+
+# Tier 3: Complex
+
+— Perform all of the work in the previous 2 tiers via the AWS CLI.
+Note: you can use a pre-existing AWS keypair and you are allowed to reference the AWS Console to get ID information.
+
+I will be using PowerShell to do this step. After running AWS Configure, I ran the following command (screenshot below) to create the EC2 instance with user data.
+
+*Note* (With each command that I will be using, I will be declaring my AWS profile due to having multiple AWS user accounts)
+
+![Snipe 10](https://github.com/Mirahkeyz/Launching-An-EC2-Instance-With-Userdata-Via-AWS-CLI/assets/134533695/9d2eed77-34ae-469b-8edd-95b792fe80b6)
+
+*Important* (For your user data to work, make sure you are in the directory where the text file is located)
+
+Wait a couple of minutes to allow for the Linux packages and Apache to be installed. Now go to the EC2 console and copy the public IP address and paste it into a browser.
+
+![Snipe 11](https://github.com/Mirahkeyz/Launching-An-EC2-Instance-With-Userdata-Via-AWS-CLI/assets/134533695/d94cb214-2a8f-42f7-891a-16b0d9dbac3a)
+
+Now to make a copy of the AMI, we need to run the command below:
+
+![Snipe 12](https://github.com/Mirahkeyz/Launching-An-EC2-Instance-With-Userdata-Via-AWS-CLI/assets/134533695/bc45f0e5-678f-4768-99e3-8f52a900cb06)
+
+![Snipe 13](https://github.com/Mirahkeyz/Launching-An-EC2-Instance-With-Userdata-Via-AWS-CLI/assets/134533695/8179eefa-c2e9-468f-849c-44f1f6ff2e61)
+
+Now that we have created the AMI image, we need to launch it then test for Apache connectivity via browser.
+
+The following command launches an instance using the AMI copy (make sure you are using the AMI ID of the AMI image we just created):
+
+![Snipe 14](https://github.com/Mirahkeyz/Launching-An-EC2-Instance-With-Userdata-Via-AWS-CLI/assets/134533695/791c5ebf-ee04-49bb-a1e7-0dddca9a1ea8)
+
+After the instance is up and running, grab the public IP and paste it into a browser.
+
+![Snipe 15](https://github.com/Mirahkeyz/Launching-An-EC2-Instance-With-Userdata-Via-AWS-CLI/assets/134533695/0e5d5f2f-3d33-4dea-a886-b66bdc87ea80)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
